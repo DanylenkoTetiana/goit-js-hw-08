@@ -1,5 +1,5 @@
+('use strict');
 import throttle from 'lodash.throttle';
-('user strict');
 
 const LOCALSTORAGE_KEY = 'feedback-form-state';
 let getEl = selector => document.querySelector(selector);

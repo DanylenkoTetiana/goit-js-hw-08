@@ -1,9 +1,9 @@
+'use strict';
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 // Change code below this line
-('user strict');
 
 const galleryEl = document.querySelector('.gallery');
 const markup = galleryItems

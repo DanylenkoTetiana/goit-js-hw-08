@@ -1,21 +1,25 @@
-'user strict';
-import player from '@vimeo/player';
+('use strict');
+import Vimeo from '@vimeo/player';
+import throttle from 'lodash.throttle';
+
+//  const iframe = document.querySelector('iframe');
+//  const player = new Vimeo.Player(iframe);
 
 let getEl = selector => document.querySelector(selector);
 const iframeEl = getEl('#vimeo-player');
+const player = new Vimeo(iframeEl);
 const LOCALSTORAGE_KEY = 'videoplayer-current-time';
-console.log(iframeEl);
-iframeEl.addEventListener('timeupdate', saveTime);
-function saveTime(event) {
-  localStorage.setItem(LOCALSTORAGE_KEY, form.elements.message.value);
+console.dir(player);
+
+const onPlay = function (data) {
+  console.log(data);
+  if (data) localStorage.setItem(LOCALSTORAGE_KEY, data.seconds);
+};
+onPlay();
+
+player.on('timeupdate', throttle(onPlay, 1000));
+
+let time = localStorage.getItem(LOCALSTORAGE_KEY);
+if (time != null) {
+  player.setCurrentTime(time);
 }
-console.log(iframeEl.frameborder);
-// const onPlay = function (data) {
-//   // data is an object containing properties specific to that event
-// };
-
-// player.on('timeupdate ', onPlay);
-
-// player.on('timeupdate ', function (data) {
-//   // data is an object containing properties specific to that event
-// });
