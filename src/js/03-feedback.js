@@ -14,7 +14,8 @@ formEl.addEventListener('input', throttle(handlerInput, 500));
 formEl.addEventListener('submit', handlerSubmit);
 
 function handlerInput(event) {
-  formData[event.target.name] = event.target.value;
+  formData.email = emailEl.value;
+  formData.message = textareaEl.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
